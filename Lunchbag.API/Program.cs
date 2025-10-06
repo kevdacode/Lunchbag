@@ -18,6 +18,7 @@ builder.Services.AddDbContext<LunchbagContext>(dbContextOptions
         )
     );
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
