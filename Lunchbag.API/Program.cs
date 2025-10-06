@@ -1,4 +1,5 @@
 using Lunchbag.API.DbContexts;
+using Lunchbag.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<LunchbagContext>(dbContextOptions
         builder.Configuration["ConnectionStrings:LunchbagDBConnectionString"]
         )
     );
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
