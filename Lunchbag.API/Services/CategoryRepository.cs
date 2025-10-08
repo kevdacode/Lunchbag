@@ -42,6 +42,7 @@ namespace Lunchbag.API.Services
         {
             return await _context.Products
                 .Where(p => p.CategoryId == id)
+                .Include(p => p.Category)
                 .ToListAsync();
         }
 
