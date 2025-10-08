@@ -20,6 +20,7 @@ builder.Services.AddDbContext<LunchbagContext>(dbContextOptions
     );
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
