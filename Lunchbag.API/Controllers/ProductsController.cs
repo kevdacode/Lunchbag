@@ -42,7 +42,7 @@ namespace Lunchbag.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(ProductForCreationDto product)
+        public async Task<ActionResult> CreateProduct(ProductForCreationDto product)
         {
             var productToAdd = _mapper.Map<Product>(product);
             var category = await _productRepository.GetProductCategoryAsync(productToAdd);
@@ -66,13 +66,14 @@ namespace Lunchbag.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, ProductForCreationDto product)
+        public async Task<ActionResult> UpdateProduct(int id, ProductForCreationDto product)
         {
             if (!await _productRepository.ExistsAsync(id))
             {
                 return NotFound();
             }
             var productToUpdate = _mapper.Map<Product>(product);
+            productToUpdate.Id = id;
             var category = await _productRepository.GetProductCategoryAsync(productToUpdate);
 
             if(category == null)
@@ -92,7 +93,7 @@ namespace Lunchbag.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> DeleteProduct(int id)
         {
             var product = await _productRepository.GetByIdAsync(id);
 

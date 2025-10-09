@@ -81,6 +81,8 @@ namespace Lunchbag.API.Controllers
             }
 
             var categoryToUpdate = _mapper.Map<Category>(category);
+            categoryToUpdate.Id = id;
+
             _categoryRepository.Update(categoryToUpdate);
             await _categoryRepository.SaveChangesAsync();
 
