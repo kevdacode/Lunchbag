@@ -1,5 +1,7 @@
 using Lunchbag.API.DbContexts;
+using Lunchbag.API.Entities;
 using Lunchbag.API.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,7 @@ builder.Services.AddDbContext<LunchbagContext>(dbContextOptions
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
