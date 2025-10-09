@@ -44,11 +44,6 @@ namespace Lunchbag.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(ProductForCreationDto product)
         {
-            if (await _productRepository.ExistsAsync(product.Id))
-            {
-                return Conflict("Product already exists");
-            }
-
             var productToAdd = _mapper.Map<Product>(product);
             var category = await _productRepository.GetProductCategoryAsync(productToAdd);
 
