@@ -18,7 +18,7 @@ namespace Lunchbag.API.Controllers
         public ProductsController(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]

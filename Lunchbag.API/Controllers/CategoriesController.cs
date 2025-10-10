@@ -16,7 +16,7 @@ namespace Lunchbag.API.Controllers
         public CategoriesController(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]

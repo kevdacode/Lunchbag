@@ -18,7 +18,7 @@ namespace Lunchbag.API.Controllers
         public CustomersController(ICustomerRepository customerRepository, IMapper mapper, IPasswordHasher<Customer> passwordHasher)
         {
             _customerRepository = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
         }
 
