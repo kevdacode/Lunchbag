@@ -11,6 +11,8 @@ namespace Lunchbag.API.Entities
         public DateTime OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
 
+        public bool Finalized { get; set; } = false;
+
         [ForeignKey("CustomerId")]
         public Customer? Customer { get; set; }
 
