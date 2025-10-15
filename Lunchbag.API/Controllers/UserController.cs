@@ -32,7 +32,7 @@ namespace Lunchbag.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> RegisterCustomer(RegisterCustomerDto customer)
         {
-            if (await _userRepository.UserMailExistsAsync(customer.Email))
+            if (await _userRepository.UserEmailExistsAsync(customer.Email))
             {
                 return BadRequest("Username/Email already exists.");
             }
