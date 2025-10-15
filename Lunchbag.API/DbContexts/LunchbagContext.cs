@@ -7,7 +7,7 @@ namespace Lunchbag.API.DbContexts
     {
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Product> Products { get; set; }
@@ -19,6 +19,16 @@ namespace Lunchbag.API.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasDiscriminator<string>("UserType")
+                .HasValue<Customer>("Customer")
+                .HasValue<Admin>("Admin");
+
+            modelBuilder.Entity<Admin>()
+                .HasData(
+                    //PW: 1234567
+                    new User() { Id = 1, Email = "admin@lunchbag.de", PasswordHash = "AQAAAAIAAYagAAAAECiJDuM8jVYjbYsiwbq2AU2xQL9pW28DS32O2xR1TFpEKpwASpkeN9NB5uu2KQvTxg" }
+                );
 
             modelBuilder.Entity<Category>()
                 .HasData(

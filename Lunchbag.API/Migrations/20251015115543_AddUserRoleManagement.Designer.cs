@@ -3,6 +3,7 @@ using System;
 using Lunchbag.API.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lunchbag.API.Migrations
 {
     [DbContext(typeof(LunchbagContext))]
-    partial class LunchbagContextModelSnapshot : ModelSnapshot
+    [Migration("20251015115543_AddUserRoleManagement")]
+    partial class AddUserRoleManagement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
@@ -380,14 +383,6 @@ namespace Lunchbag.API.Migrations
                     b.HasBaseType("Lunchbag.API.Entities.User");
 
                     b.HasDiscriminator().HasValue("Admin");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "admin@lunchbag.de",
-                            PasswordHash = "AQAAAAIAAYagAAAAECiJDuM8jVYjbYsiwbq2AU2xQL9pW28DS32O2xR1TFpEKpwASpkeN9NB5uu2KQvTxg"
-                        });
                 });
 
             modelBuilder.Entity("Lunchbag.API.Entities.Customer", b =>
