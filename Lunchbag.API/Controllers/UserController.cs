@@ -2,6 +2,7 @@
 using Lunchbag.API.Entities;
 using Lunchbag.API.Models;
 using Lunchbag.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,12 +22,14 @@ namespace Lunchbag.API.Controllers
         IUserRepository _userRepository;
         IMapper _mapper;
         IPasswordHasher<User> _passwordHasher;
+        JwtService _jwtService;
 
-        public UserController(IUserRepository userRepository, IMapper mapper, IPasswordHasher<User> passwordHasher)
+        public UserController(IUserRepository userRepository, IMapper mapper, IPasswordHasher<User> passwordHasher, JwtService jwtService)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
+            _jwtService = jwtService ?? throw new ArgumentNullException(nameof(jwtService));
         }
 
         [HttpPost("register")]
@@ -66,12 +69,9 @@ namespace Lunchbag.API.Controllers
             {
                 return BadRequest("Wrong Password");
             }
-                
-            // TODO: Generate & return jwtToken
-            //var token = jwtService.CreateToken(customer);
-            //return Results.Ok(new { token });
 
-            return Ok("Login Successfull");
+            var token = _jwtService.CreateToken(userToLogin);
+            return Ok(new { token });
         }
 
         [HttpDelete("delete/{id}")]
