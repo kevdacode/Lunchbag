@@ -5,6 +5,11 @@ namespace Lunchbag.API.Entities
 {
     public class Customer : User
     {
+        public Customer()
+        {
+            ShoppingCart = new ShoppingCart();
+        }
+
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
